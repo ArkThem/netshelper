@@ -3,11 +3,18 @@ from hosts import get_hosts_netshhelper_records
 
 
 def add_choice():
-    rule = input("Write rule like 127.0.0.1:9999 mydomain: \n")
-    ip_port, domain = rule.split(' ')
-    ip, port = ip_port.split(':')
-    add_netsh_rule(ip=ip, port=int(port), domain=domain)
-    print(rule + 'added succesfully')
+    rule = input("Write rule like 127.0.0.1:9999 mydomain:443\n")
+    ip_port, domain_port = rule.split(' ')
+    print(ip_port, domain_port)
+    ip, port_ip         = ip_port.split(':')
+    domain, port_domain = domain_port.split(':')
+    add_netsh_rule(
+        ip=ip, 
+        port_ip=int(port_ip), 
+        domain=domain, 
+        port_domain=int(port_domain)
+        )
+    print(rule + ' added succesfully')
     
 def delete_choice():
     print('Which record to delete? Write number:')
@@ -28,4 +35,4 @@ match choise_start:
         delete_choice()
     case _:
         exit()
-# rule = input("Write rule like 127.0.0.1:9999 mydomain: \n")
+# rule = input("Write rule like 127.0.0.1:9999 mydomain: \n") 
